@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<school id="100" name="WGen School" xmlns="http://www.wirelessgeneration.com/wgen.xsd">
+
+    <grade id="1">
+        <classroom id="101" name="Mrs. Jones' Math Class">
+            <teacher id="10100000001" first_name="Barbara" last_name="Jones"/>
+
+            <student id="10100000010" first_name="Michael" last_name="Gil" grade="2"/>
+            <student id="10100000011" first_name="Kimberly" last_name="Gutierrez" grade="2"/>
+            <student id="10100000013" first_name="Toby" last_name="Mercado" grade="1"/>
+            <student id="10100000014" first_name="Lizzie" last_name="Garcia" grade="1"/>
+            <student id="10100000015" first_name="Alex" last_name="Cruz" grade="1"/>
+        </classroom>
+
+
+        <classroom id="102" name="Mr. Smith's PhysEd Class">
+            <teacher id="10200000001" first_name="Arthur" last_name="Smith"/>
+            <teacher id="10200000011" first_name="John" last_name="Patterson"/>
+
+            <student id="10200000010" first_name="Nathaniel" last_name="Smith" grade="1"/>
+            <student id="10200000011" first_name="Brandon" last_name="McCrancy" grade="1"/>
+            <student id="10200000012" first_name="Elizabeth" last_name="Marco" grade="1"/>
+            <student id="10200000013" first_name="Erica" last_name="Lanni" grade="1"/>
+            <student id="10200000014" first_name="Michael" last_name="Flores" grade="1"/>
+            <student id="10200000015" first_name="Jasmin" last_name="Hill" grade="1"/>
+            <student id="10200000016" first_name="Brittany" last_name="Perez" grade="1"/>
+            <student id="10200000017" first_name="William" last_name="Hiram" grade="1"/>
+            <student id="10200000018" first_name="Alexis" last_name="Reginald" grade="1"/>
+            <student id="10200000019" first_name="Matthew" last_name="Gayle" grade="1"/>
+        </classroom>
+
+        <classroom id="103" name="Brian's Homeroom">
+            <teacher id="10300000001" first_name="Brian" last_name="O'Donnell"/>
+        </classroom>
+    </grade>
+</school>
+
