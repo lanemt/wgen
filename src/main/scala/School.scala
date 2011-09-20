@@ -1,9 +1,19 @@
 package com.wgen
 
-case class School(val id: String, val name: String) {
-  var grades = List[Grade]()
+case class School(id: String, name: String) {
+  var grades = Map[String,Grade]()
   require(id.matches("[0-9]{1,11}"))
   require(!name.isEmpty)
+
+  def containsGrade(uid: String): Boolean = grades.contains(uid)
+  def getGrade(uid: String): Grade = grades(uid)
+  def addGrade(g: Grade) { grades += (g.id -> g) }
+
+  def toXML: xml.Elem = {
+    <school id={id} name={name}>
+      {grades.values map { g => g.toXML } }
+    </school>
+  }
 }
 
 object School{
@@ -11,11 +21,11 @@ object School{
 
   def apply(node: xml.Node): School = {
     require(label == node.label)
-    val id = (node \ "@id").toString
-    val name = (node \ "@name").toString
+    val id = (node \ "@id").toString()
+    val name = (node \ "@name").toString()
     var school = School(id, name)
 
-    school.grades = getGrades(node).toList
+    getGrades(node) foreach school.addGrade
     school
   }
 

@@ -21,15 +21,15 @@ class SchemaAwareFactoryAdapter(schema:Schema) extends NoBindingFactoryAdapter {
         throw e
     }
 
-    val xr = parser.getXMLReader()
-    val vh = schema.newValidatorHandler()
+    val xr = parser.getXMLReader
+    val vh = schema.newValidatorHandler
     vh.setContentHandler(this)
     xr.setContentHandler(vh)
 
     // parse file
     scopeStack.push(TopScope)
     xr.parse(source)
-    scopeStack.pop
+    scopeStack.pop()
     return rootElem.asInstanceOf[Elem]
   }
 

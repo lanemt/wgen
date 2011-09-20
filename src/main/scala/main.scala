@@ -13,17 +13,8 @@ object main extends App{
     val csvBuilder = new CSVBuilder
     csvBuilder.toFile(school, "out.csv")
     var csvSchool = csvBuilder.loadFile("out.csv")
-    //var school = School(xml \ School.label)
+    println( csvSchool.toXML )
 
-    /*
-    for (xs <- (xml \\ Classroom.label)) {
-      val classroom = Classroom(xs)
-      println(classroom.name + " size:" + classroom.students.size)
-    }
-    println("AAAAAAAAAAAA!")
-    val loadnoad = loadXMLFromFile("wgen_project/wgen_project__xml_sample_data.xml")
-    //println(loadnoad.toString)
-    */
   } catch {
     case ex: Exception => { //FileNotFoundException
       Console.err.println("error: unable to convert xml: " + ex )
