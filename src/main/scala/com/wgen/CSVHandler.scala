@@ -3,11 +3,12 @@ package com.wgen
 import java.io.PrintWriter
 import scala.io.Source
 
-class CSVBuilder {
+class CSVHandler extends SchoolIOHandler {
+  def parsesFileExtension = List[String]("csv")
   private def delim = ", "
   private def numValues = 13
 
-  def toFile(school: School, filename: String) {
+  def saveToFile(school: School, filename: String) {
     val file = new java.io.File(filename)
     val out = new PrintWriter( file )
     try {
@@ -18,7 +19,7 @@ class CSVBuilder {
   }
 
   def loadFile(filename: String): School = {
-    var school = School("100","school")
+    var school = School("100","Unnamed School")
     val source = Source.fromFile(filename)
     val lines = source.getLines().toList
     source.close()
@@ -70,7 +71,7 @@ class CSVBuilder {
                    firstName: String, lastName: String, grade: String) {
       if (id.nonEmpty && !classroom.containsStudent(id))
       {
-        var student = new Student(id, firstName, lastName, grade.toInt)
+        var student = new Student(id, firstName, lastName, grade.trim.toInt)
         classroom.addStudent(student)
       }
     }

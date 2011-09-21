@@ -30,7 +30,7 @@ class SchemaAwareFactoryAdapter(schema:Schema) extends NoBindingFactoryAdapter {
     scopeStack.push(TopScope)
     xr.parse(source)
     scopeStack.pop()
-    return rootElem.asInstanceOf[Elem]
+    rootElem.asInstanceOf[Elem]
   }
 
 }

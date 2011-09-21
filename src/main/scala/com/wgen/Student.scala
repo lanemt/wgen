@@ -8,7 +8,7 @@ case class Student(id: String, firstName: String,
   require(0 <= grade && grade <= 13)
 
   def toXML: xml.Elem = {
-    <student id={id} first_name={firstName} last_name={lastName}/>
+    <student id={id} first_name={firstName} last_name={lastName} grade={grade.toString}/>
   }
 }
 

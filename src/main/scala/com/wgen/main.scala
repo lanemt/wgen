@@ -1,40 +1,30 @@
 package com.wgen
 
-object main extends App{
-  println("Hello, World!")
+import com.frugalmechanic.optparse._
 
-  try {
-    val xml = xmlParser.getXMLFromFile("wgen_project/wgen_project__xml_schema.xsd", "wgen_project/wgen_project__xml_sample_data.xml")
+object main extends OptParse{
+  def usage = "__Usage__\nDescription: Wgen project parses and outputs school data files.\n" +
+              "Args: --input <fileIn> --output <fileout> --schema <schemafile.xsd>\n" +
+              "Supported input/output filetypes: .xml and .csv"
 
-    //val schools = for(school <- xml) yield School(school)
-    //println("Number of schools:" + schools.size)
+  val inFile = StrOpt("input")
+  val outFile = StrOpt("output")
+  val schemaFile = StrOpt("schema")
 
-    val school = School(xml.last)
-    val csvBuilder = new CSVBuilder
-    csvBuilder.toFile(school, "out.csv")
-    var csvSchool = csvBuilder.loadFile("out.csv")
-    println( csvSchool.toXML )
-
-  } catch {
-    case ex: Exception => { //FileNotFoundException
-      Console.err.println("error: unable to convert xml: " + ex )
+  def main(args:Array[String]) {
+    parse(args)
+    if (inFile.getOrElse("").isEmpty ||
+        outFile.getOrElse("").isEmpty ||
+        schemaFile.getOrElse("").isEmpty) {
+      Console.err.println("Missing parameters\n" + usage)
+      return
     }
-  }
 
-  def loadXMLFromFile(filename: String): scala.xml.Elem = {
-      xml.XML.loadFile(filename)
-  }
+    val fileHandler = new FileHandler(schemaFile())
+    fileHandler.addHandler(new CSVHandler)
+    fileHandler.addHandler(new XMLHandler(schemaFile()))
 
+    val school = fileHandler.loadFile(inFile())
+    fileHandler.saveToFile(school, outFile())
+  }
 }
-
-/* scratch
-
-//import java.io.FileNotFoundException
-
-  val node = <a><b><c/></b></a>
-
-  scala.xml.XML.save("test.xml", node)
-
-  println("AAAAAAAAAAAA!")
-
-*/

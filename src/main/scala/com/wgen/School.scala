@@ -9,10 +9,12 @@ case class School(id: String, name: String) {
   def getGrade(uid: String): Grade = grades(uid)
   def addGrade(g: Grade) { grades += (g.id -> g) }
 
-  def toXML: xml.Elem = {
-    <school id={id} name={name}>
-      {grades.values map { g => g.toXML } }
-    </school>
+  def toXML: xml.Node = {
+    val xml =
+      <school id={id} name={name} xmlns="http://www.wirelessgeneration.com/wgen.xsd">
+        {grades.values map { g => g.toXML } }
+      </school>
+    scala.xml.Utility.trim(xml)
   }
 }
 
