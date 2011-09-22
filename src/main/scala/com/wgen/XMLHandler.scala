@@ -6,8 +6,6 @@ import javax.xml.transform.stream.StreamSource
 import java.io.{StringReader, File, PrintWriter}
 import org.xml.sax.InputSource
 
-//implicit def toStreamSource(x:scala.xml.Elem) = new StreamSource(new StringReader(x.toString()))
-
 class XMLHandler(schemaFileName: String) extends SchoolIOHandler {
   def parsesFileExtension = List[String]("xml","xsd")
   private val factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
